@@ -144,10 +144,3 @@ This project provides practical understanding of:
 * Next-token prediction
 * Autoregressive text generation
 
-## 👩‍💻 Author
-
-**Jahnavi Tongia**
-
-B.Tech – Computer Science Engineering (AI)
-
-MIT ADT University
