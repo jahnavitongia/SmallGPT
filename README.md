@@ -25,6 +25,10 @@ The model learns to predict the next character based on the previous sequence of
 * Training and validation loss visualization
 * Autoregressive text generation
 * Next-character probability analysis
+* Temperature and top-k sampling controls
+* Causal attention-map visualization
+* Perplexity reporting and checkpoint export
+* Jury-ready architecture walkthrough and viva answers
 
 ## 🧠 Model Architecture
 
@@ -110,6 +114,36 @@ The model predicts a probability distribution for the next character, samples a 
 
 This makes the generation process autoregressive.
 
+The jury-2 section of the notebook also compares sampling temperatures and
+top-k filtering. Temperature controls how sharply the model favors likely
+characters; top-k restricts sampling to the k highest-scoring choices.
+
+## 🔎 Jury 2 Additions
+
+The final notebook section extends the original mini-GPT demonstration with:
+
+* An annotated explanation of the causal attention calculation and its mask.
+* A heatmap of attention weights from a real model head.
+* A temperature/top-k generation helper and side-by-side sample comparison.
+* Validation perplexity, computed as `exp(validation cross-entropy loss)`.
+* An optional checkpoint containing model weights and the character vocabulary.
+* A visual next-character probability chart.
+* A short reflection on scaling and ready-to-use answers to common jury questions.
+
+Run the notebook from top to bottom. The training section takes the most time;
+use a GPU runtime when available. The checkpoint cell writes
+`mini_gpt_checkpoint.pt` to the current working directory.
+
+## 🎓 Jury Quick Answers
+
+1. **What is GPT's training objective?** Given a prefix, predict the next token
+   at every position. The targets are the input sequence shifted by one token,
+   and cross-entropy measures the predicted-versus-actual next-token mismatch.
+2. **What does positional encoding add?** Self-attention alone does not encode
+   token order. Positional embeddings add a learned position-specific vector to
+   each token embedding, so the model can distinguish the same character at
+   different sequence positions.
+
 ## 🛠️ Technologies Used
 
 * Python
@@ -143,4 +177,3 @@ This project provides practical understanding of:
 * Language-model training
 * Next-token prediction
 * Autoregressive text generation
-
